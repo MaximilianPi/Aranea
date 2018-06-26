@@ -26,8 +26,7 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
                   colBorder = c("#cccccc","#cccccc","#666798","#cccccc","#cccccc"),
                   maxValues = NULL,minValues = NULL,
                   rad = 5, cexSteps = 1.4, cexProcent = 0.8,
-                  parValues = list(pty = "s"), cexPoints = 1.0,
-                  stepsText = NULL){
+                  parValues = list(pty = "s"), cexPoints = 1.0){
 
   ## help functions:
   deg2rad <- function(deg) {(deg * pi) / (180)}
@@ -53,6 +52,12 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
   for(i in 1:ncol(x1)){
     x1[,i] = (x1[,i] + abs(minValues[i]))/(abs(minValues[i]) + maxValues[i])
     if(!is.null(x2)) x2[,i] = (x2[,i] + abs(minValues[i]))/(abs(minValues[i]) + maxValues[i])
+    if(any(x1[,i] > maxValues[i])) stop("Max values are lower than actual values")
+    if(any(x1[,i] < minValues[i])) stop("Min values are higher than actual values")
+
+  }
+  if(!is.null(x2)){
+    if(nrow(x2) == nrow(x1)) stop("x1 and x2 do not have equal number of rows")
   }
 
   ## init:
@@ -66,37 +71,40 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
   colSpider <- addA(colSpider, alphaSpider)
   #
 
-  plot(NULL, NULL, xlim = c(-5,5), ylim =c(-5,5),pty="s", axes = F, xlab = "", ylab = "")
-  if(!rectangular)
-    for(i in 1:length(lineSeq)){
-      xx = lineSeq[i]*cos( seq(0,2*pi, length.out=nseg) )
-      yy = lineSeq[i]*sin( seq(0,2*pi, length.out=nseg) )
-      if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
-      else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
-      else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
-      else polygon(xx,yy, border = colBorder[i], lty = 2)
-    }
-  else
-    for(i in 1:length(lineSeq)){
-      xx = cos(deg2rad(angles))*lineSeq[i]
-      yy = sin(deg2rad(angles))*lineSeq[i]
-      if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
-      else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
-      else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
-      else polygon(xx,yy, border = colBorder[i], lty = 2)
-    }
+  baseRadar = function() {
+      plot(NULL, NULL, xlim = c(-5,5), ylim =c(-5,5),pty="s", axes = F, xlab = "", ylab = "")
+    if(!rectangular)
+      for(i in 1:length(lineSeq)){
+        xx = lineSeq[i]*cos( seq(0,2*pi, length.out=nseg) )
+        yy = lineSeq[i]*sin( seq(0,2*pi, length.out=nseg) )
+        if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
+        else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
+        else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
+        else polygon(xx,yy, border = colBorder[i], lty = 2)
+      }
+    else
+      for(i in 1:length(lineSeq)){
+        xx = cos(deg2rad(angles))*lineSeq[i]
+        yy = sin(deg2rad(angles))*lineSeq[i]
+        if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
+        else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
+        else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
+        else polygon(xx,yy, border = colBorder[i], lty = 2)
+      }
 
-  for(counter in 1:length(angles)) {
-    segments(x0 = cos(deg2rad(angles[counter]))*lineSeq[1],
-             y0 =  sin(deg2rad(angles[counter]))*lineSeq[1],
-             x1 = cos(deg2rad(angles[counter]))*rad ,
-             y1 = sin(deg2rad(angles[counter]))*rad ,
-             col = colBorder[5])
+    for(counter in 1:length(angles)) {
+      segments(x0 = cos(deg2rad(angles[counter]))*lineSeq[1],
+               y0 =  sin(deg2rad(angles[counter]))*lineSeq[1],
+               x1 = cos(deg2rad(angles[counter]))*rad ,
+               y1 = sin(deg2rad(angles[counter]))*rad ,
+               col = colBorder[5])
+    }
   }
 
 
   ## plot rect
   for(data in 1:nrow(x1)){
+    if(data == 1 || !singlePanel) baseRadar()
     valuesP = matrix(0,nSeg,2)
     textP = matrix(0,nSeg,2)
     valuesPtrain = matrix(0,nSeg,2)
@@ -125,35 +133,40 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
       polygon(y = valuesPtrain[,2], x = valuesPtrain[,1], col = colRec2[data],border = colRecBorder[data], lwd = 1.5, lty = 2)
       points(y = valuesPtrain[,2], x = valuesPtrain[,1], pch = 16, col = colRecBorder[data], cex = cexPoints, lty = 2)
     }
+
+    ## Text
+    if(data == 1 || !singlePanel){
+      measures = stepsText
+      if(!is.null(measures)){
+        strl = max(sapply(measures,nchar))
+        # measures = as.vector(sapply(measures, function(x, strl){
+        #     if((strl - nchar(x)) > 0)return(do.call(paste0, args = as.list( x, c(rep(" ",strl - nchar(x))))))
+        #     else return(x)
+        #   } ,strl))
+        # textP[,1][7] = textP[,1][7] - 0.3
+        # textP[,2][7] = textP[,2][7] - 0.3
+        pos = sapply(angles, function(x) {
+          if(x >= 45 && x <= 95 ) return(3)
+          if(x>95 && x<240) return(2)
+          if(x>=240 && x<=285) return(1)
+          if(x>285 &&x<=360) return(4)
+          if(x<45) return(4)
+        })
+        text(x = textP[,1], y = textP[,2], labels = measures, xpd = T, font = 2, cex = cexSteps, pos = pos)
+      }
+      procent[,1] = 0.2
+      procent[,2] = lineSeq
+      text(x = procent[,1], y = procent[,2], labels = c("  0%", " 25%", " 50%", " 75%", "100%"),
+           adj = c(-0.2,0.8), font = 2, cex = cexProcent)
+      if(!is.null(titles)) title(main = titles, outer = F)
+    }
+
+    #
+
   }
   #
 
-  ## Text
-  measures = stepsText
-  if(!is.null(measures)){
-    strl = max(sapply(measures,nchar))
-    # measures = as.vector(sapply(measures, function(x, strl){
-    #     if((strl - nchar(x)) > 0)return(do.call(paste0, args = as.list( x, c(rep(" ",strl - nchar(x))))))
-    #     else return(x)
-    #   } ,strl))
-    # textP[,1][7] = textP[,1][7] - 0.3
-    # textP[,2][7] = textP[,2][7] - 0.3
-    pos = sapply(angles, function(x) {
-      if(x >= 45 && x <= 95 ) return(3)
-      if(x>95 && x<240) return(2)
-      if(x>=240 && x<=285) return(1)
-      if(x>285 &&x<=360) return(4)
-      if(x<45) return(4)
-    })
-    text(x = textP[,1], y = textP[,2], labels = measures, xpd = T, font = 2, cex = cexSteps, pos = pos)
-  }
-  procent[,1] = 0.2
-  procent[,2] = lineSeq
-  text(x = procent[,1], y = procent[,2], labels = c("  0%", " 25%", " 50%", " 75%", "100%"),
-       adj = c(-0.2,0.8), font = 2, cex = cexProcent)
-  if(!is.null(titles)) title(main = titles, outer = F)
 
-  #
 }
 
 
