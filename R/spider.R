@@ -57,7 +57,7 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
 
   }
   if(!is.null(x2)){
-    if(nrow(x2) == nrow(x1)) stop("x1 and x2 do not have equal number of rows")
+    if(nrow(x2) != nrow(x1)) stop("x1 and x2 do not have equal number of rows")
   }
 
   ## init:
