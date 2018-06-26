@@ -12,13 +12,43 @@ spider(x1 = NULL, x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,
   cexProcent = 0.8, parValues = list(pty = "s"), cexPoints = 1)
 }
 \arguments{
-\item{x1}{measurement data}
+\item{x1}{data}
 
-\item{x2}{color for spider}
+\item{x2}{data to plot on top of x1}
 
-\item{maxValues}{alpha for colSpider}
+\item{colRec}{color of x1 rectangular}
 
-\item{minValues}{colors for spider borders}
+\item{alphaRec}{alpha of the rectangular}
+
+\item{colRecBorder}{color of rectangular's border}
+
+\item{titles}{title for the spider plot}
+
+\item{stepsText}{labels for the radar lines}
+
+\item{singlePanel}{plot everything in one plot}
+
+\item{rectangular}{rectangular spider chart}
+
+\item{colSpider}{color of the spider chart}
+
+\item{alphaSpider}{alpha of the spider chart}
+
+\item{colBorder}{color for the five rings of the chart}
+
+\item{maxValues}{which x1/x2 maximal can get}
+
+\item{minValues}{which x1/x2 minimal can get}
+
+\item{rad}{radius for the charts, plot window is limited from -5 to 5 in x and y direction}
+
+\item{cexSteps}{size of the stepsTexts}
+
+\item{cexProcent}{size of the procent texts}
+
+\item{parValues}{par(..) values to be called for each chart}
+
+\item{cexPoints}{size of the points}
 }
 \description{
 Spider chart function

@@ -1,17 +1,17 @@
 #' multispider plot
-#' @param x1
-#' @param x2
-#' @param colRec
-#' @param alphaRec
-#' @param colRecBorder
-#' @param titles
-#' @param cexSteps
-#' @param cexProcent
-#' @param parValues
-#' @param mar
-#' @param cexPoints
-#' @param sizeMiddle
-#' @param twist
+#' @param x1 data
+#' @param x2 data to plot on top of x1
+#' @param colRec color of x1 rectangular
+#' @param alphaRec alpha of the rectangular
+#' @param colRecBorder color of rectangular's border
+#' @param titles for each plot
+#' @param cexSteps size of radial labels
+#' @param cexProcent size of procent texts
+#' @param parValues par(...) values to be called for each plot
+#' @param mar list of 2xmargin vectors, first one for the inner plot
+#' @param cexPoints size of the points
+#' @param sizeMiddle proportion of middle plot to the outer plots
+#' @param twist twist the outer plots
 #'
 #'
 #' @export

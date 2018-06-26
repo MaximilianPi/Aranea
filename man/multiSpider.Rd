@@ -11,7 +11,31 @@ multiSpider(x1 = NULL, x2 = NULL, colRec = NULL, alphaRec = 0.5,
   twist = 90, ...)
 }
 \arguments{
-\item{twist}{}
+\item{x1}{data}
+
+\item{x2}{data to plot on top of x1}
+
+\item{colRec}{color of x1 rectangular}
+
+\item{alphaRec}{alpha of the rectangular}
+
+\item{colRecBorder}{color of rectangular's border}
+
+\item{titles}{for each plot}
+
+\item{cexSteps}{size of radial labels}
+
+\item{cexProcent}{size of procent texts}
+
+\item{parValues}{par(...) values to be called for each plot}
+
+\item{mar}{list of 2xmargin vectors, first one for the inner plot}
+
+\item{cexPoints}{size of the points}
+
+\item{sizeMiddle}{proportion of middle plot to the outer plots}
+
+\item{twist}{twist the outer plots}
 }
 \description{
 multispider plot

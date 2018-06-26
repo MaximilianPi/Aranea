@@ -1,23 +1,23 @@
 #' Spider chart function
-#' @param x1 measurement data
-#' @param x2 color for spider
-#' @param colRec
-#' @param colRecBorder
-#' @param titles
-#' @param stepsText
-#' @param singlePanel
-#' @param rectangular
-#' @param colSpider
-#' @param alphaSpider
-#' @param colBorder
-#' @param maxValues alpha for colSpider
-#' @param minValues colors for spider borders
-#' @param rad
-#' @param cexSteps
-#' @param cexProcent
-#' @param parValues
-#' @param cexPoints
-#' @param stepsText
+#' @param x1 data
+#' @param x2 data to plot on top of x1
+#' @param colRec color of x1 rectangular
+#' @param alphaRec alpha of the rectangular
+#' @param colRecBorder color of rectangular's border
+#' @param titles title for the spider plot
+#' @param stepsText labels for the radar lines
+#' @param singlePanel plot everything in one plot
+#' @param rectangular rectangular spider chart
+#' @param colSpider color of the spider chart
+#' @param alphaSpider alpha of the spider chart
+#' @param colBorder color for the five rings of the chart
+#' @param maxValues which x1/x2 maximal can get
+#' @param minValues which x1/x2 minimal can get
+#' @param rad radius for the charts, plot window is limited from -5 to 5 in x and y direction
+#' @param cexSteps size of the stepsTexts
+#' @param cexProcent size of the procent texts
+#' @param parValues par(..) values to be called for each chart
+#' @param cexPoints size of the points
 #' @export
 #'
 spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRecBorder = NULL, titles = NULL, stepsText = NULL,singlePanel = F,
