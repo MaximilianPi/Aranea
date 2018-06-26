@@ -12,7 +12,7 @@
 #' @param cexPoints size of the points
 #' @param sizeMiddle proportion of middle plot to the outer plots
 #' @param twist twist the outer plots
-#'
+#' @param ... arguments passend down to spider()
 #'
 #' @export
 
