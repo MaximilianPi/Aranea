@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1530034381555.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BA080837",
+    "lastKnownWriteTime" : 1530034393,
+    "last_content_update" : 1530034393435,
+    "path" : "~/GitHub/Aranea/R/multiSpider.R",
+    "project_path" : "R/multiSpider.R",
+    "properties" : {
+        "cursorPosition" : "47,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

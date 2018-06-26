@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1530034353935.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3AD95D29",
+    "lastKnownWriteTime" : 1530040029,
+    "last_content_update" : 1530040029570,
+    "path" : "~/GitHub/Aranea/R/spider.R",
+    "project_path" : "R/spider.R",
+    "properties" : {
+        "cursorPosition" : "56,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
