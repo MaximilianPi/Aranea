@@ -5,5 +5,5 @@
  
 install development version:
  ```{r}
-devtools::install_github(repo = "MaximilianPi/Aranea", dependencies = T, build_vignettes = T)
+devtools::install_github(repo = "MaximilianPi/Aranea", build_vignettes = T)
 ```
