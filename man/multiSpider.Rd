@@ -36,6 +36,8 @@ multiSpider(x1 = NULL, x2 = NULL, colRec = NULL, alphaRec = 0.5,
 \item{sizeMiddle}{proportion of middle plot to the outer plots}
 
 \item{twist}{twist the outer plots}
+
+\item{...}{arguments passend down to spider()}
 }
 \description{
 multispider plot
