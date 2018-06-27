@@ -2,15 +2,3 @@
 .Rhistory
 .RData
 
-*.html
-!docs/*.html
-!docs/*/*.html
-*.gz
-*.dll
-*.DS_Store
-*.pdf
-*.rdb
-*.rdx
-*.so
-*.o
-*.log
