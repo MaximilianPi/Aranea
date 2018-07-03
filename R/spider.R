@@ -18,6 +18,7 @@
 #' @param cexProcent size of the procent texts
 #' @param parValues par(..) values to be called for each chart
 #' @param cexPoints size of the points
+#' @param circleLines number of circle lines
 #' @export
 #'
 spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRecBorder = NULL, titles = NULL, stepsText = NULL,singlePanel = F,
@@ -26,12 +27,8 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
                   colBorder = c("#cccccc","#cccccc","#666798","#cccccc","#cccccc"),
                   maxValues = NULL,minValues = NULL,
                   rad = 5, cexSteps = 1.4, cexProcent = 0.8,
-                  parValues = list(pty = "s"), cexPoints = 1.0){
+                  parValues = list(pty = "s"), cexPoints = 1.0, circleLines = 5){
 
-  ## help functions:
-  deg2rad <- function(deg) {(deg * pi) / (180)}
-  addA    <- function(col, alpha = 0.25) apply(sapply(col, col2rgb)/255, 2, function(x) rgb(x[1], x[2], x[3], alpha=alpha))
-  #
 
 
   if(is.null(colRecBorder)) colRecBorder = colRec
@@ -66,29 +63,34 @@ spider = function(x1 = NULL,x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,colRec
   do.call(par, parValues)
   nseg=1440
   nSeg = ncol(x1)
-  angles = seq(90,450,length.out = nSeg+1)[1:(nSeg)]
+
   procent = matrix(0,5,2)
   colSpider <- addA(colSpider, alphaSpider)
   #
 
   baseRadar = function() {
-      plot(NULL, NULL, xlim = c(-5,5), ylim =c(-5,5),pty="s", axes = F, xlab = "", ylab = "")
+
+    lines = circleLines
+    lineSeq = seq(rad*0.1,rad, length.out = lines)
+    angles = seq(90,450,length.out = nSeg+1)[1:(nSeg)]
+
+    plot(NULL, NULL, xlim = c(-5,5), ylim =c(-5,5),pty="s", axes = F, xlab = "", ylab = "")
     if(!rectangular)
       for(i in 1:length(lineSeq)){
         xx = lineSeq[i]*cos( seq(0,2*pi, length.out=nseg) )
         yy = lineSeq[i]*sin( seq(0,2*pi, length.out=nseg) )
-        if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
-        else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
-        else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
+        if(i == lines) polygon(xx,yy, col= colSpider, border = colBorder[lines], lty = 2, lwd = 1)
+        else if(i == ceiling(lines)) polygon(xx,yy, border = colBorder[ceiling(lines)], lty = 2)
+        else if(i == 1) polygon(xx,yy,  border = colBorder[lines], lty = 2)
         else polygon(xx,yy, border = colBorder[i], lty = 2)
       }
     else
       for(i in 1:length(lineSeq)){
         xx = cos(deg2rad(angles))*lineSeq[i]
         yy = sin(deg2rad(angles))*lineSeq[i]
-        if(i == 5) polygon(xx,yy, col= colSpider, border = colBorder[5], lty = 2, lwd = 1)
-        else if(i == 3) polygon(xx,yy, border = colBorder[3], lty = 2)
-        else if(i == 1) polygon(xx,yy,  border = colBorder[5], lty = 2)
+        if(i == lines) polygon(xx,yy, col= colSpider, border = colBorder[lines], lty = 2, lwd = 1)
+        else if(i == ceiling(lines)) polygon(xx,yy, border = colBorder[ceiling(lines)], lty = 2)
+        else if(i == 1) polygon(xx,yy,  border = colBorder[lines], lty = 2)
         else polygon(xx,yy, border = colBorder[i], lty = 2)
       }
 
