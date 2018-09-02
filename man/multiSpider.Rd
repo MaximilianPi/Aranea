@@ -6,9 +6,10 @@
 \usage{
 multiSpider(x1 = NULL, x2 = NULL, colRec = NULL, alphaRec = 0.5,
   colRecBorder = "#ff6666", titles = NULL, cexSteps = c(0.01, 1.4),
-  cexProcent = c(0.2, 0.8), parValues = list(pty = "s"), mar = list(c(0,
-  2, 1, 2) + 0.7, c(0, 0, 1, 0) + 0.2), cexPoints = 1, sizeMiddle = 0.5,
-  twist = 90, ...)
+  cexProcent = c(0.2, 0.8), parValues = list(pty = "s"),
+  circleLines = c(5, 5), mar = list(c(0, 2, 1, 2) + 0.7, c(0, 0, 1, 0) +
+  0.2), cexPoints = 1, sizeMiddle = 0.5, twist = 90, multiCoords = NULL,
+  ...)
 }
 \arguments{
 \item{x1}{data}
@@ -28,6 +29,8 @@ multiSpider(x1 = NULL, x2 = NULL, colRec = NULL, alphaRec = 0.5,
 \item{cexProcent}{size of procent texts}
 
 \item{parValues}{par(...) values to be called for each plot}
+
+\item{circleLines}{default = 5}
 
 \item{mar}{list of 2xmargin vectors, first one for the inner plot}
 

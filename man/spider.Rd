@@ -9,7 +9,8 @@ spider(x1 = NULL, x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,
   rectangular = F, colSpider = "#e6e6e6", alphaSpider = 0.5,
   colBorder = c("#cccccc", "#cccccc", "#666798", "#cccccc", "#cccccc"),
   maxValues = NULL, minValues = NULL, rad = 5, cexSteps = 1.4,
-  cexProcent = 0.8, parValues = list(pty = "s"), cexPoints = 1)
+  cexProcent = 0.8, parValues = list(pty = "s"), cexPoints = 1,
+  circleLines = 5, twistSteps = 90, cexTitles = 0.7)
 }
 \arguments{
 \item{x1}{data}
@@ -49,6 +50,10 @@ spider(x1 = NULL, x2 = NULL, colRec = "#ff9999", alphaRec = 0.5,
 \item{parValues}{par(..) values to be called for each chart}
 
 \item{cexPoints}{size of the points}
+
+\item{circleLines}{number of circle lines}
+
+\item{twistSteps}{0 to 90 supported}
 }
 \description{
 Spider chart function

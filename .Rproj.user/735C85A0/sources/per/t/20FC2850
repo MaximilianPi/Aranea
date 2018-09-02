@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1530298358620.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "66646030",
+    "id" : "20FC2850",
+    "lastKnownWriteTime" : 1530298449,
+    "last_content_update" : 1530298449736,
+    "path" : "~/GitHub/Aranea/R/utilis.R",
+    "project_path" : "R/utilis.R",
+    "properties" : {
+        "cursorPosition" : "10,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
